@@ -1,0 +1,36 @@
+steps for terraform with pipeline on terminal to commands:
+step-1:
+ login instancekey: ssh ubuntu@publicip address of ec2 instance
+
+step-2:
+ sudo apt update(not mandatory)
+
+step-3:
+ install java for Jenkins worknode: sudo apt install openjdk-17-jdk -y
+
+step - 4:
+ install unzip: sudo apt install unzip -y 
+
+step-5:
+ install aws cli on ubuntu: 1.curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              sudo ./aws/install
+                             2.aws --version
+
+
+step-5:
+ install terraform: 1.wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform -y
+2.terraform --version
+
+step-6:
+ install terrascan on ubuntu: 1.curl -L "$(curl -s https://api.github.com/repos/tenable/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz
+                              2.tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
+                              3.sudo install terrascan /usr/local/bin && rm terrascan
+                              4.terrascan version
+step-7:
+install tflint on ubuntu: 1.sudo apt update
+                          2.sudo apt install snapd
+                          3.sudo snap install tflint
+                          4.tflint --version
